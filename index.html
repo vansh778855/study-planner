@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://mavamnumfjhzsfybjokn.supabase.co wss://mavamnumfjhzsfybjokn.supabase.co; worker-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Countdown Study Planner</title>
+<meta name="description" content="Plan which subject and chapter you finish on which date, counting down to your own deadline.">
+<meta name="theme-color" content="#EEF2F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D141B" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="preload" href="fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="shell" id="shell" hidden>
+  <nav class="rail" id="rail" aria-label="Sections">
+    <div class="brand"><img src="icons/icon-192.png" alt=""><div><b>Countdown Planner</b><span>Finish every subject on time</span></div></div>
+    <span class="indicator" id="indicator" aria-hidden="true"></span>
+    <button class="tab" data-view="today" id="tab-today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>Today</button>
+    <button class="tab" data-view="calendar" id="tab-calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</button>
+    <button class="tab" data-view="subjects" id="tab-subjects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/></svg>Subjects</button>
+    <div class="rail-add"><button class="btn wide" data-act="quickadd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Add chapters</button></div>
+    <p class="rail-foot" id="railFoot"></p>
+  </nav>
+  <main id="main"><div id="view"></div></main>
+  <button class="fab" id="fab" data-act="quickadd" aria-label="Add chapters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span>Add chapters</span></button>
+</div>
+<div class="welcome" id="welcome" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="sheetRoot"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<script src="config.js"></script>
+<script src="vendor/supabase.js"></script>
+<script src="sync.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
